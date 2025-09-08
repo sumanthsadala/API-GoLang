@@ -18,8 +18,8 @@ func CreateBook(db *sql.DB, w http.ResponseWriter, r *http.Request) error {
 	if err := json.NewDecoder(r.Body).Decode(&book); err != nil {
 		return err
 	}
-	query := "INSERT INTO books(title, author, year) VALUES (?,?,?)"
-	_, err := db.Exec(query, book.Title, book.Author, book.Year)
+	query := "INSERT INTO books(id, title, author, year) VALUES (?,?,?,?)"
+	_, err := db.Exec(query, book.Id, book.Title, book.Author, book.Year)
 	if err != nil {
 		return err
 	}

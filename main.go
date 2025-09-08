@@ -5,11 +5,13 @@ import (
 	"database/sql"
 	"log"
 	"net/http"
+
+	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
-	dsn := "username:password@tcp(localhost)dbname?parseTime=true"
-	db, err := sql.Open("msql", dsn)
+	dsn := "root:Sadala@385@tcp(127.0.0.1:3306)/library_db?parseTime=true"
+	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatal(err)
 	}
