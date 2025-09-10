@@ -5,14 +5,16 @@ import (
 	"database/sql"
 	"encoding/json"
 	"net/http"
+
+	"github.com/IBM/sarama"
 )
 
 type Handler struct {
 	biz IBizLogic
 }
 
-func NewHandler(db *sql.DB) Handler {
-	return Handler{biz: NewBizLogic(db)}
+func NewHandler(db *sql.DB, producer sarama.SyncProducer) Handler {
+	return Handler{biz: NewBizLogic(db, producer)}
 }
 
 func (h Handler) CreateHandler() http.HandlerFunc {
